@@ -1,0 +1,78 @@
+.Create {
+    min-height: 100vh;
+    padding: 7rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Palette-New {
+    position: relative;
+    flex: 0 0 30rem;
+    display: flex;
+    flex-direction: column;
+    height: 30rem;
+    padding: 1.5rem;
+    background: var(--color-white-l);
+    border-radius: .8rem;
+    cursor: pointer;
+}
+
+.New-C1 {
+    flex: 3;
+}
+
+.New-C2 {
+    flex: 2;
+}
+
+.New-C3 {
+    flex: 1.5;
+}
+
+.New-C4 {
+    flex: 1;
+}
+
+.Picker-CloseBtn {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    color: var(--color-grey-d);
+    border: .1rem solid var(--color-grey-d);
+    border-radius: 50%;
+    line-height: .5;
+    left: 50%;
+    top: -6rem;
+    font-size: 2rem;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sketch-picker {
+    position: absolute;
+    z-index: 100;
+    top: 1rem;
+    right: -20rem;
+}
+
+@media (max-width: 900px) {
+    .sketch-picker {
+        right: -10rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .sketch-picker {
+        right: -5rem;
+    }
+}
+
+@media (max-width: 430px) {
+    .sketch-picker {
+        top: 3rem;
+        right: 0rem;
+    }
+}

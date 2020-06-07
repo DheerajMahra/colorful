@@ -1,0 +1,8 @@
+.Feed {
+    padding: 7rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+}

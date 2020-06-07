@@ -1,0 +1,39 @@
+.Navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 0 2rem;
+    background: var(--color-white-l);
+    z-index: 100;
+}
+
+.Link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.Link:not(:last-child) {
+    margin-right: 2rem;
+}
+
+.Logo-Box {
+    display: flex;
+    align-items: center;
+}
+
+.Logo-Box__Logo {
+    margin-right: 1rem;
+}
+
+.Logo-Box__Text {
+    font-size: 1.8rem;
+}
+
+.Navbar__List {
+    display: flex;
+}
