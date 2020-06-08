@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import './Create.css'
 import { SketchPicker } from 'react-color'
+import { withRouter } from 'react-router-dom'
+import db from '../../config/firebase'
+import Loading from '../loading/Loading'
 
-const Create = () => {
+const Create = props => {
 
     const [colors, setColors] = useState({
         c1: '#dddddd',
@@ -10,17 +13,43 @@ const Create = () => {
         c3: '#bbbbbb',
         c4: '#aaaaaa'
     })
-
     const [picker, setPicker] = useState({ isVisible: false, toggler: null })
+    const [isCreateBtnVisible, setIsCreateBtnVisible] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleColorChange = ({hex}) => {
+        setColors({ ...colors, [picker.toggler]: hex.toUpperCase() })
+        setIsCreateBtnVisible(true)
+    }
 
-        setColors({ ...colors, [picker.toggler]: hex })
+    const saveToDb = async () => {
+
+        setIsLoading(true)
+
+        // Add a new document with auto-generated id
+        let newPalette = {
+            colors: { ...colors },
+            createdAt: new Date(),
+            isLiked: false,
+            likes: 0
+        }
+
+        try {
+            await db.collection('palettes').add(newPalette)
+            setIsLoading(false)
+            props.history.push('/')
+
+        } catch(e) {
+            setIsLoading(false)
+            alert("An error occured: ", e);
+        }
     }
 
     return (
         <div className="Create">
-    
+            {
+                isLoading && <Loading />
+            }
             <div className="Palette-New Shadow-Light">
                  {
                     picker.isVisible &&
@@ -60,11 +89,16 @@ const Create = () => {
                     style={{background: colors.c4}}
                     onClick={() => setPicker({isVisible: true, toggler: 'c4'})}
                 ></div>
-
+                {
+                    isCreateBtnVisible && 
+                    <span
+                        className="Palette-New__CreateBtn"
+                        onClick={saveToDb}
+                    >Create</span>
+                }   
             </div>
-
         </div>
     )
 }
 
-export default Create
+export default withRouter(Create)

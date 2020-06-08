@@ -2,8 +2,10 @@
     min-height: 100vh;
     padding: 7rem 2rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .Palette-New {
@@ -11,7 +13,7 @@
     flex: 0 0 30rem;
     display: flex;
     flex-direction: column;
-    height: 30rem;
+    width: 30rem;
     padding: 1.5rem;
     background: var(--color-white-l);
     border-radius: .8rem;
@@ -38,8 +40,7 @@
     position: absolute;
     width: 4rem;
     height: 4rem;
-    color: var(--color-grey-d);
-    border: .1rem solid var(--color-grey-d);
+    border: .1rem solid var(--color-grey-l);
     border-radius: 50%;
     line-height: .5;
     left: 50%;
@@ -49,6 +50,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #a4a4a4;
+}
+
+.Palette-New__CreateBtn {
+    position: absolute;
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
+    border: .1rem solid var(--color-grey-l);
+    border-radius: .4rem;
+    bottom: -5.5rem;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .sketch-picker {

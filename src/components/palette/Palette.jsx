@@ -1,5 +1,6 @@
 import React from 'react'
 import './Palette.css'
+import moment from 'moment'
 
  const copyCode = (code, e) => {
 
@@ -28,58 +29,61 @@ import './Palette.css'
     }, 1000);
 }
 
-const Palette = () => {
+const Palette = props => {
+
+    let { id, colors, likes, isLiked, createdAt, updateLikes } = props
+    let { c1, c2, c3, c4 } = colors
 
     return (
         <div className="Palette-Box Shadow-Light">
             <div className="Palette">
                 <div
                     className="C1"
-                    style={{background: "#654062"}}
-                    onClick={(e) => copyCode("#654062", e)}
+                    style={{background: c1}}
+                    onClick={(e) => copyCode(c1, e)}
                 >
                     <span
                         className="C__Code"
                         onClick={(e) => e.stopPropagation()}
-                    >#654062</span>
+                    >{c1}</span>
                 </div>
                 <div
                     className="C2"
-                    style={{background: "#FF9C71"}}
-                    onClick={(e) => copyCode("#FF9C71", e)}
+                    style={{background: c2}}
+                    onClick={(e) => copyCode(c2, e)}
                 >
                     <span
                         className="C__Code"
                         onClick={(e) => e.stopPropagation()}
-                    >#FF9C71</span>
+                    >{c2}</span>
                 </div>
                 <div
                     className="C3"
-                    style={{background: "#FBD46D"}}
-                    onClick={(e) => copyCode("#FBD46D", e)}
+                    style={{background: c3}}
+                    onClick={(e) => copyCode(c3, e)}
                 >
                     <span
                         className="C__Code"
                         onClick={(e) => e.stopPropagation()}
-                    >#FBD46D</span>
+                    >{c3}</span>
                 </div>
                 <div
                     className="C4"
-                    style={{background: "#E8EAD3"}}
-                    onClick={(e) => copyCode("#E8EAD3", e)}
+                    style={{background: c4}}
+                    onClick={(e) => copyCode(c4, e)}
                 >
                     <span
                         className="C__Code"
                         onClick={(e) => e.stopPropagation()}
-                    >#E8EAD3</span>
+                    >{c4}</span>
                 </div>
             </div>
             <div className="Controls">
-                <div className="Like">
+                <div className="Like" onClick={() => updateLikes(id)}>
                     <span className="Like__Icon">&#10084;</span>
-                    <span className="Like__Count">29</span>
+                    <span className="Like__Count">{likes}</span>
                 </div>
-                <div className="Age">5 months</div>
+                <div className="Age">{moment(createdAt.toDate()).fromNow()}</div>
             </div>
         </div>
     )
