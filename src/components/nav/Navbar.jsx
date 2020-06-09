@@ -22,7 +22,10 @@ const Navbar = () => {
 
             <div className="Navbar__List">
                 <Link to="/create" className="Link">
-                    <NavItem>Create a palette</NavItem>
+                    <NavItem>Create</NavItem>
+                </Link>
+                <Link to="/saved" className="Link">
+                    <NavItem>Saved</NavItem>
                 </Link>
             </div>
 

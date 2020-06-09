@@ -9,6 +9,15 @@
     border-radius: .8rem;
 }
 
+@media (max-width: 425px) {
+    .Palette-Box {
+        flex: 0 0 15rem;
+        height: 19rem;
+        padding: 1rem;
+        margin: .5rem;
+    }
+}
+
 .Palette {
     flex: 1;
     display: flex;
@@ -68,7 +77,7 @@
     justify-content: space-between;
 }
 
-.Like {
+.Save {
     font-size: 1.5rem;
     padding: .5rem 1rem;
     border-radius: .5rem;
@@ -76,12 +85,8 @@
     border: .1rem solid var(--color-grey-l);
 }
 
-.Like > *::selection {
+.Save::selection {
     background: none;
-}
-
-.Like__Icon {
-    margin-right: .7rem;
 }
 
 .Age {

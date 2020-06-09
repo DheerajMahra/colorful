@@ -1,37 +1,11 @@
 import React from 'react'
 import './Palette.css'
 import moment from 'moment'
-
- const copyCode = (code, e) => {
-
-    let codeElem = e.target.firstElementChild
-    //select hexcode
-    if (document.body.createTextRange) {
-        const range = document.body.createTextRange();
-        range.moveToElementText(codeElem);
-        range.select();
-    } else if (window.getSelection) {
-        const selection = window.getSelection();
-        const range = document.createRange();
-        range.selectNodeContents(codeElem);
-        selection.removeAllRanges();
-        selection.addRange(range);
-    } else {
-        alert("Your browser doesn't support copy to clipboard.");
-    }
-    //execute copy command on whatever code is selected
-    document.execCommand("copy");
-
-    codeElem.innerHTML = "<i>Copied!</i>"
-    //set hexcode back after 1s
-    setInterval(() => {
-        codeElem.innerHTML = code
-    }, 1000);
-}
+import { copyCode, savePalette, unsavePalette, format } from '../../helpers'
 
 const Palette = props => {
 
-    let { id, colors, likes, isLiked, createdAt, updateLikes } = props
+    let { id, colors, createdAt, fromStorage, savedAt } = props.palette
     let { c1, c2, c3, c4 } = colors
 
     return (
@@ -79,11 +53,20 @@ const Palette = props => {
                 </div>
             </div>
             <div className="Controls">
-                <div className="Like" onClick={() => updateLikes(id)}>
-                    <span className="Like__Icon">&#10084;</span>
-                    <span className="Like__Count">{likes}</span>
+            {
+                fromStorage ?
+
+                <div className="Save" onClick={() => unsavePalette(id)}>
+                    Unsave
+                </div> :
+
+                <>
+                <div className="Save" onClick={(e) => savePalette(e, props.palette)}>
+                    { localStorage.getItem(`colorful-${id}`) ? 'Saved' : 'Save' }
                 </div>
-                <div className="Age">{moment(createdAt.toDate()).fromNow()}</div>
+                <div className="Age">{format(moment(createdAt.toDate()).fromNow())}</div>
+                </>
+            }
             </div>
         </div>
     )

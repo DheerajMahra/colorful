@@ -3,15 +3,15 @@ import './Create.css'
 import { SketchPicker } from 'react-color'
 import { withRouter } from 'react-router-dom'
 import db from '../../config/firebase'
-import Loading from '../loading/Loading'
+import Loading from '../../components/loading/Loading'
 
 const Create = props => {
 
     const [colors, setColors] = useState({
-        c1: '#dddddd',
-        c2: '#cccccc',
-        c3: '#bbbbbb',
-        c4: '#aaaaaa'
+        c1: '#DDDDDD',
+        c2: '#CCCCCC',
+        c3: '#BBBBBB',
+        c4: '#AAAAAA'
     })
     const [picker, setPicker] = useState({ isVisible: false, toggler: null })
     const [isCreateBtnVisible, setIsCreateBtnVisible] = useState(false)
@@ -29,9 +29,7 @@ const Create = props => {
         // Add a new document with auto-generated id
         let newPalette = {
             colors: { ...colors },
-            createdAt: new Date(),
-            isLiked: false,
-            likes: 0
+            createdAt: new Date()
         }
 
         try {
