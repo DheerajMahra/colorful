@@ -41,4 +41,9 @@
     border: .1rem solid var(--color-grey-l);
     border-radius: .4rem;
     margin-bottom: 5rem;
+    transition: .1s ease-in-out;
+}
+
+.Empty__Btn:hover {
+    background: var(--color-blue-l);
 }

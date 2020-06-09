@@ -1,11 +1,12 @@
 import React from 'react'
 import './Palette.css'
 import moment from 'moment'
-import { copyCode, savePalette, unsavePalette, format } from '../../helpers'
+import { copyCode, addToStorage, format } from '../../helpers'
 
 const Palette = props => {
 
-    let { id, colors, createdAt, fromStorage, savedAt } = props.palette
+    let { unsavePalette } = props
+    let { id, colors, createdAt, fromStorage} = props.palette
     let { c1, c2, c3, c4 } = colors
 
     return (
@@ -61,7 +62,7 @@ const Palette = props => {
                 </div> :
 
                 <>
-                <div className="Save" onClick={(e) => savePalette(e, props.palette)}>
+                <div className="Save" onClick={(e) => addToStorage(e, props.palette)}>
                     { localStorage.getItem(`colorful-${id}`) ? 'Saved' : 'Save' }
                 </div>
                 <div className="Age">{format(moment(createdAt.toDate()).fromNow())}</div>

@@ -10,7 +10,7 @@ export const format = time => {
     }
 }
 
-export const savePalette = (e, palette) => {
+export const addToStorage = (e, palette) => {
     //check if item exists in local storage
     e.target.innerHTML = 'Saved'
 
@@ -25,19 +25,19 @@ export const savePalette = (e, palette) => {
     )
 }
 
-export const unsavePalette = id => {
+export const removeFromStorage = id => {
     localStorage.removeItem(`colorful-${id}`)
 }
 
-export const getSavedFromStorage = () => {
+export const getFromStorage = () => {
 
-    let  saved = null;
+    let  saved = [];
 
     for (let i = 0; i < localStorage.length; i++){
         if (localStorage.key(i).substring(0,9) === 'colorful-') {
             let item = localStorage.getItem(localStorage.key(i))
             item = JSON.parse(item)
-            saved = { ...saved, [item.id]: item}
+            saved = [...saved, item]
         }
     }
     return saved
