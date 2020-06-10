@@ -11,6 +11,7 @@ const App = () => {
   return (
     <Router>
       <div className="App">
+      
         <Navbar />
         <Switch>
 
