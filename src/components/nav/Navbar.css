@@ -30,8 +30,14 @@
     margin-right: 1rem;
 }
 
+.Logo-Box__Logo {
+    width: 3rem;
+    border-radius: 50%;
+}
+
 .Logo-Box__Text {
     font-size: 1.8rem;
+    margin-bottom: .1rem;
 }
 
 .Navbar__List {

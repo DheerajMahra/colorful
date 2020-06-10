@@ -13,8 +13,7 @@ const Navbar = () => {
                     <img
                         className="Logo-Box__Logo"
                         src={Logo}
-                        alt="colorful logo"
-                        width="30"    
+                        alt="colorful logo" 
                     />
                     <p className="Logo-Box__Text">Colorful</p>
                 </div>
