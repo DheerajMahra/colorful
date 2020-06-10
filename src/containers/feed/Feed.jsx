@@ -8,26 +8,68 @@ const Feed = props => {
 
     const [palette, setPalette] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    
-    const fetchPalette = () => {
 
-        db.collection('palettes').orderBy("createdAt").onSnapshot(snapshot => {
-            snapshot.docChanges().forEach(change => {
-                
-                if (change.type === "added") {
-                    setPalette( prevPalette => ([
-                        { id: change.doc.id, ...change.doc.data() },
-                        ...prevPalette
-                    ]))
-                    setIsLoading(false)
-                }
+    const [start, setStart] = useState("")
+    const [totalPalettes, setTotalPalettes] = useState(0)
+    const [totalLoadMoreAllowed, setTotalLoadMoreAllowed] = useState(0)
+    const [totalLoadMoreClicks, setTotalLoadMoreClicks] = useState(0)
+    const chunks = 2
+
+    const loadMore = start => {
+
+        if(totalLoadMoreClicks >= totalLoadMoreAllowed) {
+            return
+        }
+        setIsLoading(true)
+        setTotalLoadMoreClicks(prevState => prevState + 1)
+        getTotalPalettes()
+
+        db.collection('palettes').orderBy("createdAt", "desc")
+        .startAfter(start).limit(chunks).get()
+        .then(snaps => {
+            snaps.docs.forEach(snap => {
+                setPalette( prevPalette => ( [...prevPalette, snap.data()] ))
+                setIsLoading(false)
             })
         })
     }
 
+    const getTotalPalettes = () => {
+        db.collection('counter').doc('counter').get()
+        .then(snap => { setTotalPalettes(snap.data().count) })
+        .catch(e => alert('Some error occured', e))
+    }
+
+
+    const LoadMoreAllowed = () => {
+        let totalLoadMoreAllowed = Math.floor((totalPalettes/chunks) - 1)
+        setTotalLoadMoreAllowed(totalLoadMoreAllowed)
+    }
+
+    const fetchPalette = () => {
+
+        db.collection('palettes').orderBy("createdAt", "desc")
+        .startAfter(start).limit(chunks).get()
+        .then(snaps => {
+            snaps.docs.forEach(snap => {
+                setPalette( prevPalette => ( [...prevPalette, snap.data()] ))
+                setIsLoading(false)
+            })
+            console.log('prevstate', start)
+            console.log(snaps.docs[snaps.docs.length - 1].data())
+        setStart(snaps.docs[snaps.docs.length - 1])
+        })
+    }
+
     useEffect(() => {
+        getTotalPalettes()
         fetchPalette()
+        return () => { setStart("") }
     }, [])
+
+    useEffect(() => {
+        LoadMoreAllowed();
+    }, [totalPalettes]);
 
     return (
         <div className="Feed">
@@ -41,6 +83,10 @@ const Feed = props => {
                     palette={palette}
                 />
             ))
+        }
+        {
+            !isLoading &&
+            <a className="LoadMore__Btn" onClick={() => loadMore(start)}>Load more</a>
         }
         </div>
     )

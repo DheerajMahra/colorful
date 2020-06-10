@@ -1,5 +1,5 @@
 .Feed {
-    padding: 7rem 2rem 2rem 2rem;
+    padding: 7rem 2rem 8rem 2rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -9,6 +9,24 @@
 
 @media (max-width: 425px) {
     .Feed {
-        padding: 7rem 0 2rem 0;
+        padding: 7rem 0 8rem 0;
     }
+}
+
+.LoadMore__Btn {
+    position: absolute;
+    font-size: 1.5rem;
+    bottom: 0;
+    display: inline-block;
+    margin: 2rem 0;
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
+    border: .1rem solid var(--color-grey-l);
+    border-radius: .4rem;
+    transition: .1s ease-in-out;
+    cursor: pointer;
+}
+
+.LoadMore__Btn:hover {
+    background: var(--color-blue-l);
 }

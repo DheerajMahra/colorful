@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import './Create.css'
+import { v4 as uuidv4 } from 'uuid';
 import { SketchPicker } from 'react-color'
 import { withRouter } from 'react-router-dom'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 import db from '../../config/firebase'
 import Loading from '../../components/loading/Loading'
 
@@ -28,12 +31,14 @@ const Create = props => {
 
         // Add a new document with auto-generated id
         let newPalette = {
+            id: uuidv4(),
             colors: { ...colors },
             createdAt: new Date()
         }
 
         try {
             await db.collection('palettes').add(newPalette)
+            await db.collection('counter').doc('counter').update({ count: firebase.firestore.FieldValue.increment(1) })
             setIsLoading(false)
             props.history.push('/')
 
