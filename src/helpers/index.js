@@ -10,7 +10,8 @@ export const format = time => {
     }
 }
 
-export const addToStorage = (e, palette) => {
+export const addToStorage
+ = (e, palette) => {
     //check if item exists in local storage
     e.target.innerHTML = 'Saved'
 

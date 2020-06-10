@@ -22,6 +22,7 @@ const Info = () => {
             </p>
 
             <h1 className="Info__Head">Meet the developer</h1>
+            <p className="Info__Desc" style={{marginBottom: ".5rem"}}>Dheeraj Mahra</p>
             <span className="Info__Links">
                 <a
                     className="Links-Item"
@@ -51,7 +52,7 @@ const Info = () => {
 
             <h1 className="Info__Head">&copy; Colorful 2020</h1>
             <p className="Info__Desc">
-                Made with React by Dheeraj Mahra
+                Made with React & Firebase
             </p>
         </div>
     )
