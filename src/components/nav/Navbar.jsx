@@ -26,6 +26,9 @@ const Navbar = () => {
                 <Link to="/saved" className="Link">
                     <NavItem>Saved</NavItem>
                 </Link>
+                <Link to="/info" className="Link" style={{marginLeft: "auto"}}>
+                    <NavItem>About</NavItem>
+                </Link>
             </div>
 
         </div>

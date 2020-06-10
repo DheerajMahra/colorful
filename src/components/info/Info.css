@@ -1,0 +1,51 @@
+.Info {
+    padding: 7rem 2rem 2rem 2rem;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.Logo {
+    width: 5rem;
+    border-radius: 50%;
+    margin: 2rem 0 3rem 0;
+}
+
+.Info__Head {
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.Info__Desc {
+    font-size: 1.5rem;
+    color: #696969;
+    margin-bottom: 1.5rem;
+}
+
+.Info__Desc--main {
+    width: 50%;
+    margin: 0 auto 1.5rem auto;
+}
+
+@media (max-width: 757px) {
+    .Info__Desc--main {
+        width: 100%;
+    }
+}
+
+@media (max-width: 425px) {
+    .Info {
+        padding: 7rem 2rem 2rem 2rem;
+    }
+}
+
+.Info__Links { 
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.Links-Item {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1.3rem;
+    margin-right: .8rem;
+}
