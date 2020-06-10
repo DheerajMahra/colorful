@@ -53,7 +53,6 @@ const Info = () => {
             <p className="Info__Desc">
                 Made with React by Dheeraj Mahra
             </p>
-
         </div>
     )
 }
