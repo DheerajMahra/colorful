@@ -13,13 +13,14 @@ const Feed = props => {
     const [totalPalettes, setTotalPalettes] = useState(0)
     const [totalLoadMoreAllowed, setTotalLoadMoreAllowed] = useState(0)
     const [totalLoadMoreClicks, setTotalLoadMoreClicks] = useState(0)
-    const chunks = 2
+    const chunks = 8
 
     const loadMore = start => {
 
         if(totalLoadMoreClicks >= totalLoadMoreAllowed) {
             return
         }
+
         setIsLoading(true)
         setTotalLoadMoreClicks(prevState => prevState + 1)
         getTotalPalettes()
@@ -31,7 +32,9 @@ const Feed = props => {
                 setPalette( prevPalette => ( [...prevPalette, snap.data()] ))
                 setIsLoading(false)
             })
+            setStart(snaps.docs[snaps.docs.length - 1])
         })
+
     }
 
     const getTotalPalettes = () => {
@@ -55,8 +58,7 @@ const Feed = props => {
                 setPalette( prevPalette => ( [...prevPalette, snap.data()] ))
                 setIsLoading(false)
             })
-            console.log('prevstate', start)
-            console.log(snaps.docs[snaps.docs.length - 1].data())
+
         setStart(snaps.docs[snaps.docs.length - 1])
         })
     }
@@ -85,8 +87,8 @@ const Feed = props => {
             ))
         }
         {
-            !isLoading &&
-            <a className="LoadMore__Btn" onClick={() => loadMore(start)}>Load more</a>
+            (!isLoading && (totalLoadMoreClicks !== totalLoadMoreAllowed)) &&
+            <span className="LoadMore__Btn" onClick={() => loadMore(start)}>Load more</span>
         }
         </div>
     )
